@@ -1,8 +1,20 @@
 import express from 'express';
 import {registerUser} from '../controllers/user.controller.js';
+import {upload} from '../middlewares/multer.middlewares.js';
 
 const router = express.Router();
 
-router.route("/register").post(registerUser);  //http://localhost:5000/api/v1/users/register
+router.route("/register").post(
+  upload.fields([
+    {
+      name:"avatar",
+      maxCount:1
+    },
+    {
+      name:"coverImage",
+      maxCount:1
+    }
+  ]),
+  registerUser);
 
 export default router;
