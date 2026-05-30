@@ -1,7 +1,7 @@
 // require("dotenv").config({path:'./env'})
 import dotenv from 'dotenv';
 import connectDB from './db/DataBase.js';
-
+import {app} from './app.js';
 
 dotenv.config({
   path:'./env'
@@ -10,7 +10,7 @@ dotenv.config({
 
 connectDB().then(()=>{
   app.listen(process.env.PORT || 5000,()=>{
-    console.log(`Server running on address http://localhost:${PORT}`);
+    console.log(`Server running on address http://localhost:${process.env.PORT}`);
   })
 })
 .catch(err =>{
